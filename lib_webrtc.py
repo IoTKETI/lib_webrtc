@@ -91,12 +91,16 @@ def control_web(driver):
     global port
 
     msw_mqtt_connect(broker_ip, port)
-    
+
     time.sleep(3)
     driver.refresh()
-    
+
     while True:
-        pass
+        try:
+            driver.find_element('id', 'reload-button').click()
+        except Exception as e:
+            pass
+
 
 def msw_mqtt_connect(broker_ip, port):
     global lib_mqtt_client
